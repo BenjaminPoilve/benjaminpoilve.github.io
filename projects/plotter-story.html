@@ -1,0 +1,178 @@
+<link rel="stylesheet" type="text/css" href="https://benjaminpoilve.github.io/FlexDownEditor/template.css" media="all">
+<link rel="shortcut icon" type="image/png" href="/sources/ico.png"/>
+<title>Projects</title>
+<script src="https://benjaminpoilve.github.io/FlexDownEditor/flexdown.js"></script><noscript>
+///
+[0/0/9]
+## [:house:](/projects)
+
+[1/1/0]
+#### [**Home**](/) 
+#### [__**Projects**__](/projects) 
+#### [**Other**](/other) 
+
+
+    
+[3/4/9]
+###### Tuesday, January 8th 2019
+## **The Plotter Story**
+##### @benjaminpoilve
+
+It's funny how the most random event can lead you on some multi-years quest. My passion for plotters started with such an event.
+
+My friend Alexandre had a broken desktop printer and, knowing my passion for dismantling things, proposed to give it to me. I spent a great evening marvelling at the inner complexity of such a common appliance, not knowing that it was the beginning of my passion for CNC machines.
+
+CNC machines (for Computer Numerical Control) are tools that transform bits into atoms. I spend the following summer self-teaching practical electronics with my Friend Sebastian (who went on working at Festo), to be able, by myself, to build some. 
+
+#### A weird kind of printer
+
+My first home-built printer was probably one of the strangest. It was an arduino-powered printer that used a solenoid with a needle as a head. The result? Some sort of perforated/embossed image. I personally used it as a quick replacement for silk-screens.
+
+[![](https://raw.githubusercontent.com/BenjaminPoilve/WKP/master/Media/output.gif)](https://www.youtube.com/watch?v=Wvt8n5BqoFU)
+
+Right from this first try, I wanted the printer to be easily reproducted. I had to learn how to use a laser cutter, and the documentation for the build can be found [here](https://github.com/BenjaminPoilve/WKP)
+
+![plan](https://raw.githubusercontent.com/BenjaminPoilve/WKP/master/Media/Plan2DwithElement.png)
+
+But this was just the beginning!
+
+#### Liplo
+
+I then set out to design a kit desktop plotter.
+
+The goal of this project was to imagine an easy to use and simple desktop printer, open to experimentations. Being able to use a wide array of tools (pen, pencil, brush) and paper types, it allows to really discover the world of CNC tools. Control of the printer can be done through a software that uses vector drawing, or through processing with the help of a simple software library, to discover generative drawing.
+
+##### The build
+
+[![](https://raw.githubusercontent.com/BenjaminPoilve/Liplo/master/Media/DSC_2392a.jpg)](https://www.youtube.com/watch?v=27pN25DA5TU&t=17s)
+
+(click image for video)
+
+
+The construction is based on standard pieces. This allows the user to buy those pieces cheaply. 
+
+The parts that need to be made are:
+
+* Some laser cut parts for the head as well as the bottom of the machine
+* Two CNC routed wood pieces
+* A bended spring steel plate
+
+The last one is the harder to manufacture. I did not find any manufacturer that made such parts. If you have an industrial metal bender at hand, this is pretty easy to do, but most people dont. This piece is used to maintain pressure between the paper and the roller.
+
+On the electronic's side, I decided to use an [EibotBoard](http://www.schmalzhaus.com/EBB/). This is a very sturdy piece of hardware, that can be [bought](https://shop.evilmadscientist.com/productsmenu/188) quite cheaply. Both motor are Nema 14. I recommand [Robotdigg](https://www.robotdigg.com/) for most hardware purchase.
+
+The last part of this project that is quite fun is that the axis are held in place only by magnet inserted in the wood. This allow for a very easy assembly.
+
+You can find all the information on the build itself in the [github repo](https://github.com/BenjaminPoilve/Liplo)
+
+One interesting part of the project was the software on the host's side. I made, using Processing (that was a long time ago!), a sender software.
+
+[![](https://raw.githubusercontent.com/BenjaminPoilve/Liplo/master/Media/demosoft.png)](https://drive.google.com/file/d/0BxsBFm8YwdRAMFMyQm1iZnZlT28/view?usp=sharing)
+
+(click image for video)
+
+This software had the following features:
+
+* Easy connection to the Eibotboard
+* Supports SVG file
+* Supports multiple colors files, with tool change
+* Allows for easy choice of speed and polygonalisation density
+* Allows for live visualisation of the drawing
+* Allows to pause/resume jobs.
+
+
+You can find a macOs version of the software [here](https://github.com/BenjaminPoilve/Liplo/releases)
+
+But I also wanted an easy way to allow generative drawing experiment. Once again, using processing, I designed a transpositon of screen commands to plotter commands.
+
+You can find the class [here](https://github.com/BenjaminPoilve/Liplo/blob/master/Software/Sender/Plot2.pde).
+
+It never made it into a proper library, but the usage would be:
+
+```
+  plotter = new Plot2(this);
+  int val=2 //the serial port number
+  plotter.openport(val);
+  plotter.line(10,10,20,20)
+  plotter.ellipse(20,20,10,10,10)
+
+```
+
+The coding style is poor, and it was mostly trial and error, but I really loved the idea of easily test some generative drawing. Even to explain for loops to kids, this proved to be a useful tool, and having a real-world result of your program really helps to keep them engaged in the activity. So, food for thoughts, but no real library.
+
+I really loved doing this project, and even got a few "maker of merit" price for it at the Paris MakerFaire!
+
+
+With all these positive feedbacks, and the fact that I designed this project to be cost effective, I decided that I needed to try to sell them!
+
+#### Liplo V2 
+
+I had been approched by an organism called a SATT. It is a french gouvernement-backed organisation supposed to help project get along. Their standard offer is to pay for a patent and add some developement money that you should pay back 200% or they keep the patent for themselvers.
+
+Then, I didn't understand how bad a deal it was. Plus I didn't know what could be patented in my plotter! I accepted anyway, figuring I could use the money to finance a Kickstarter. What I didn't understood was that all money they would provide could only be used to further research the "patent". So no tooling, no hiring, nothing. 
+
+I tried for a few month to make it work anyway, but at the end I had to give up. But this is what I did with these few months.
+ 
+![](https://raw.githubusercontent.com/BenjaminPoilve/LiploV2/master/media/demo.gif)
+
+##### Main changes
+
+![](https://raw.githubusercontent.com/BenjaminPoilve/LiploV2/master/media/charact-01-01.png)
+
+###### Motor switch
+
+Since one of my main issue with the former model was the overheating of stepper motors, I decided to go with DC motor with hall effect encoder. I had to go over the following steps to make it work:
+
+* Custom coupler for 3mm axis, both for puller and flexible coupler. I had them made by the factory behind robotdigg
+* Custom PCB with PID control of the three motors. Used a teensy 3.1 as main component. That allowed me to register the machine as a HID.
+* Custom PCB allowed me to fit en endstop for X-axis.
+* Use of DC controlled motor, allowed me to make a custom head for pressure control
+
+In the end, I would say this was a bad choice. Though this choice allowed for faster a more precise drawings, those motors are very sensitive, and tend to break for no reason. Add to that that they are really hard to solder, and I understood why stepper are still in use. On the plus side they are cheap ($6 with encoder), fast, and run cool. 
+
+
+
+
+###### Body change
+
+![](https://raw.githubusercontent.com/BenjaminPoilve/LiploV2/master/media/detache.jpg)
+
+I choose to go from wood to a fully silicon molded body. My main reason:
+
+* I could do away with the pressure plate, that was a pain to manufacture. I found a manufacture for custom roller
+* I could press fit motor into the silicon for easy assembly
+* It was much cheaper (around $10 per body)
+
+
+The issue was that people really liked wood! This version did not have the low-tech appeal of the other one. 
+
+###### Other change
+ 
+* I replaced all bearing by Igus plastic bearings. Great choice! Cheap, efficient, small. 
+
+#### Conclusion
+
+I was all set up to start an Indiegogo campaign then.. I bailed. But, If you are in for a laugh, you can still see the [video](https://drive.google.com/file/d/1IOQD-J_z76QY-tL704c8X8B1uKx3wiMO/view) I made at the time (sorry for the terrible soundwork)!
+
+I was alone, the motor issue was really worrying me, and the SATT that was supposed to help me was not interested in providing any operational help. I guess sometime, doing things on you own is not the right choice! 
+
+But I think my story with plotter is still not over! And maybe next time the outcome will be a little better! 
+
+Thanks for reading!
+
+
+##### [[More Informations and Data]](https://github.com/BenjaminPoilve/Liplo)
+
+[1/0/0]
+
+///
+[1/0/1]
+[1/3/4]
+---
+[1/0/1]
+
+///
+
+[9/9/9]
+##### 2019, created with [Flexdown](https://github.com/BenjaminPoilve/FlexDownEditor)
+##### @benjaminpoilve
