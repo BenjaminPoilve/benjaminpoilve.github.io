@@ -7,19 +7,110 @@
 ## [:house:](/projects)
 
 [1/1/0]
-#### [**Home**](/) 
-#### [__**Projects**__](/projects) 
-#### [**Other**](/other) 
+#### [**Home**](/)
+#### [__**Projects**__](/projects)
+#### [**Other**](/other)
 
 
-    
+
 [3/4/9]
 ###### Thursday, January 10th 2019
 ## **Subjective Map of Distance in Paris**
 ##### @benjaminpoilve
 
+This is a little project I started after thinking about subjective maps. A lot of information depends on your location, especially in cities where you are limited by public transportation systems.
+In such cases, is the usual "euclidian" distance metric such a great idea? Surely a subjective "distance" is what you are looking for when you are watching a map.
+Indeed, as a longtime Parisian, I have know internalise such a metric, and knwo that going to the 5th or 15th arrondissement takes much longer.
+
+How would a map display such information? I guess we have quite a few options.
+
+* Map Warping
+
+Probably hard to do, while preserving general geographical awareness
+
+* 3D mapping
+
+It's the option I wanted to try for a while. At a time when I had CNC access, I thought about carving a 3D paris map into wood. Peaks would be harder to attain, which uses our instincts! Unfortunately, I don't have a CNC anymore
+
+* Color Coding
+
+This is the poor man's version, but the one I will do today!
 
 
+### Getting the data
+
+I have quite a few choices to gather the data. The first one is google map. Google being google, they offer a [quite good API](https://cloud.google.com/maps-platform/routes/?hl=fr) on route query. Unfortunately, this is 0.005 USD per query.
+A quick calculus shows that depending on the density of the map, the price per map would be from $2 to $15. Plus google scraping is hard now!
+
+Another option is the RATP. They provide a service online for travel time inside paris, with little or no rate limiting!
+
+I decided to base my scrapper on metro stations, ie getting transit time from metro to metro and extrapolate using a set walking speed to fill the map.
+
+I got the subway station list from wikipedia, cleaned it a little and used that to launch the scrapper.
+
+The real issue here is that it is slow! I don't want to mess with the ratp too much, so I did not thread this part.
+
+### Building the map
+
+At this point, I need to have a way to transform coordinates on pixel on a map.
+I grabbed a map of paris from [OSM](https://www.openstreetmap.org/#map=6/46.449/2.210), and measured it with Illustrator to be able to do this transformation. Actual code is pretty basic:
+
+```
+def convertToDeltaKm(lat,lon):
+    dx = (mapcenterLong-lon)*40000*math.cos((lat+mapcenterLat)*math.pi/360)/360
+    dy = (lat-mapcenterLat)*40000/360
+    return dx,dy
+
+def convertToPixel(lat,long,ratio):
+    dx,dy=convertToDeltaKm(lat,long)
+    dx=int(mapcenterx*ratio-mapscale*dx)
+    dy=int(mapcentery*ratio-mapscale*dy)
+    return dx,dy
+```
+
+On this was done, I could visually check that my computed stations (red dots) aligned with the actual stations:
+
+![check](https://raw.githubusercontent.com/BenjaminPoilve/ParisDistanceMap/master/mapalign.png)
+
+Allright this worked!
+
+Now we just have to fill the value.
+
+Here there is a little subtility. If we simply take every stations and fill the whole map with the walking distance, and always keep the smallest, we will have our result. But is will take a looong time.
+Indeed, each station will iterate over all the pixels! It only need to iterate over the pixels that are closer to him. In fact if we were to put it in methematical term, it only need to iterate over the pixel in his [voronoid cell](https://en.wikipedia.org/wiki/Voronoi_diagram) because walk speed is constant.
+Calculating voronoid cells is complicated though, so I choosed to iterate over the pixel instead. I do have to find the closest station for each pixel. For that I used a [KDtree](https://en.wikipedia.org/wiki/K-d_tree) which is basically a multidimensionnal binary tree. As such, the search is in log(n).
+
+```
+data_array=fixdf.as_matrix(columns=["locationpixel_x","locationpixel_y"])
+KDtree = scipy.spatial.cKDTree(data_array)
+for x,y in np.ndindex(distanceArray.shape):
+    return_data=KDtree.query([x,y])
+    index=return_data[1]
+    distance=return_data[0]/mapscale #KM
+    timewalk=60*distance/walkspeed+float(timelist[index]) #Minutes
+    if distanceArray[x,y]>timewalk:
+        distanceArray[x,y]=timewalk
+```
+
+It is still a bit long but much better!
+
+### Results
+
+Now for the results!
+
+My home:
+
+![home](https://raw.githubusercontent.com/BenjaminPoilve/ParisDistanceMap/master/data/La%20Muette%20(METRO)%2C%20Paris.png)
+
+The home of my girlfriend:
+
+![home](https://raw.githubusercontent.com/BenjaminPoilve/ParisDistanceMap/master/data/Marcadet%20-%20Poissonniers%20(METRO)%2C%20Paris.png)
+
+Bonus: the place where we should meet (accumulated time, and value is the "fairness" of the place):
+
+![home](https://raw.githubusercontent.com/BenjaminPoilve/ParisDistanceMap/master/data/meetup.png)
+
+Meeting near the Saint-Lazare Station is the best and fairest!
 
 ##### [[More Informations and Data]](https://github.com/BenjaminPoilve/ParisDistanceMap)
 
