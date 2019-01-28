@@ -7,18 +7,145 @@
 ## [:house:](/projects)
 
 [1/1/0]
-#### [**Home**](/) 
-#### [__**Projects**__](/projects) 
-#### [**Other**](/other) 
+#### [**Home**](/)
+#### [__**Projects**__](/projects)
+#### [**Other**](/other)
 
 
-    
+
 [3/4/9]
-###### Friday, January 11th 2019
+###### Monday, January 28th 2019
 ## **Typewriter Optimisation**
 ##### @benjaminpoilve
 
-Work in progress, for now github for reference
+A few days ago, I read in [this blog post](https://hardmath123.github.io/crown-typewriter.html) about @hardmath123 effort to solve an interesting optimisation problem.
+He was inspired by a Crown typewriter from the late 1800s, which worked by shifting the pointer of a linear slide containing all the letter before pressing the button.
+
+
+![](/sources/images/crown-typewriter.png)
+
+As a result, writing on this king of typewriter is terribly cumbersome! As a corollary, the order of the letters on the slide is very important. For exemple in English the T-H digraph is very common, so it is smart to have put them next to each other on the slide.
+
+But is the global choice the best one possible? To determine that, we need a metric. His choosen metric was the total shift number needed to type a couple of litterature classics. With a genetic algorithm, he managed to find a far less costly arrangement of letters, but did not manage to prove it was the best arrangement.
+
+Could I find a better one? He suggested trying to use constraint solvers, so that's what I tried
+
+#### Reproducing the result
+
+But first, let's make sure we have the right problem by re-implementing the whole thing in Python. You can find the notebook for this article [here](https://github.com/BenjaminPoilve/Typewriter-Optimisation/blob/master/main.ipynb)
+
+First thing first, let's make sure that we have results consistent with @hardmath123 article
+
+```
+def cost_typewriter(a,b,string):
+    #index because we want to know if it is not found
+    return abs(string.index(a)-string.index(b))
+
+def test_permutation(string_permutation,cost_function):
+    distance_matrix=np.empty([len(string_permutation), len(string_permutation)])
+    for index_1,letter_1 in enumerate(alphabet):
+        for index_2,letter_2 in enumerate(alphabet):
+            distance_matrix[index_1][index_2]=cost_function(letter_1,letter_2,string_permutation)
+    score_matrix=np.multiply(distance_matrix, diag_digraph)
+    return score_matrix.sum()
+
+test_permutation("ABCDEFGHIJKLMNOPQRSTUVWXYZ",cost_typewriter)
+```
+The result, 9630941 is consistent with the article.
+
+The genetic algorithm in himself is not too hard to implement. Once we have functions both for letter swapping and random arrangement generation, it is simply
+
+```
+def genetic_force(seed_size,number_test,stop_cutoff,cost_function):
+    #generate seed
+    family= [random_permutation() for x in range(seed_size)]
+    stop_counter=0
+    while stop_counter<stop_cutoff:
+        old_family=family.copy()
+        with ProcessPoolExecutor(max_workers=seed_size) as executor:
+            res = executor.map(evolve_string,family,repeat(number_test),repeat(cost_function))
+        family=list(res)
+        if old_family==family:
+            stop_counter+=1
+        else:
+            stop_counter=0
+        score=[test_permutation(x,cost_function) for x in family]
+        arg=np.argsort(score)[0]
+    score=[test_permutation(x,cost_function) for x in family]
+    arg=np.argsort(score)[0]
+    return score[arg],family[arg]
+
+```
+One thing that I did here was to implement it using a pool of worker, to make the whole process faster. It is very easy to use, and you can learn more about it [here](https://medium.com/@bfortuner/python-multithreading-vs-multiprocessing-73072ce5600b).
+
+The result, once again, is consistent with the article: QJXPBYFMULORSETHAINDCWGVKZ with associated cost 5499341. One thing that is very interesting is to plot the matrix of digraph frequency with that solution, compared to the standard alphabet.
+
+![](/sources/images/solved.png)
+
+As we can see, it forms a cluster. It's logical since what we want is to group frequency as close to possible to the matrix diagonal.
+
+#### Constraint Solving
+
+Ok so let's try to use a constraint solver on this thing! Constraints solver are tool in which you define the constraint of the problem and the solver uses a list of strategy (backtracking, constraint propagation,..) to solve the problem. Those problems are called CSP for constraint satisfaction problems (typically sudoku solving, eight queen puzzle..)
+
+Z3 is probably the most complete and easy to use CSP solver. It exists in a pip package `z3-solver`.
+
+It is very easy to define our problem:
+
+```
+variable_array=[Int(letter) for letter in trunc_alphabet]
+    s=Optimize()
+    for var in variable_array:
+        s.add(And(var>=0, var<numletter))
+    s.add(Distinct(variable_array))
+    final_sum=Int("final_sum")
+    s.add(final_sum==cost_fonction_linear(variable_array))
+    s.minimize(final_sum)
+    s.check()
+```
+
+Trouble is, it is slow. How slow?
+
+I set up a test, solving the problem for 1 to 7 letters, calculating the tendancy to evaluate how long is would take.
+
+![](/sources/images/time.png)
+
+According to my calculation, it would take **13.32 million of years**.
+
+#### Conclusion
+
+For problem with very large search space and where some parts of search space is not easily disqualified, CSP solver are not a great tool.
+There is a saying that genetic programming gets you 80% of the way 80% of the time, it certainly is true for this problem! Of course, there is some easy way to make the genetic algorithm much faster (for exemple not starting with random string but with a greedy inserted alphabet) but it is not sure there is a way to prove the solution is optimal.
+
+#### Bonus: What about other types of keyboard?
+
+But let's not stop here. One thing that is fun about this solver, is that you just need to define your constraint and that all the rest is generic.
+
+For exemple, for a dumphone, I would define the constraints as follow:
+
+* 7 group of 3 letters, 2 of 4
+* Each digraph costs us :
+    * the number of click in the group for the next letter
+    * the wait time if the letter is on the same button as the former one (very annoying, last as long as 3 clicks)
+    * move time is negligible
+
+So if we run this `proposition=genetic_force(50,10,5,cost_dumbphone)`, we get:
+```
+|---------| O S Q | H L J --|
+|-- A F U | I B P | E G Y --|
+| N R Z X | D T K | C M W V |
+```
+
+And now for a smartphone, using euclidian distance between key as the metric, wa can run `proposition=genetic_force(50,10,5,cost_smartphone)`:
+
+```
+Z V G N D R M F X Q
+ K C I A E O U P J
+   W H T S L Y B
+```
+
+
+I wonder if this kind of keyboard have been tested on smartphones?
 
 
 ##### [[More Informations and Data]](https://github.com/BenjaminPoilve/Typewriter-Optimisation)

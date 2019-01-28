@@ -37,7 +37,7 @@ It's the option I wanted to try for a while. At a time when I had CNC access, I 
 This is the poor man's version, but the one I will do today!
 
 
-### Getting the data
+#### Getting the data
 
 I have quite a few choices to gather the data. The first one is google map. Google being google, they offer a [quite good API](https://cloud.google.com/maps-platform/routes/?hl=fr) on route query. Unfortunately, this is 0.005 USD per query.
 A quick calculus shows that depending on the density of the map, the price per map would be from $2 to $15. Plus google scraping is hard now!
@@ -50,7 +50,7 @@ I got the subway station list from wikipedia, cleaned it a little and used that 
 
 The real issue here is that it is slow! I don't want to mess with the ratp too much, so I did not thread this part.
 
-### Building the map
+#### Building the map
 
 At this point, I need to have a way to transform coordinates on pixel on a map.
 I grabbed a map of paris from [OSM](https://www.openstreetmap.org/#map=6/46.449/2.210), and measured it with Illustrator to be able to do this transformation. Actual code is pretty basic:
@@ -94,7 +94,7 @@ for x,y in np.ndindex(distanceArray.shape):
 
 It is still a bit long but much better!
 
-### Results
+#### Results
 
 Now for the results!
 
