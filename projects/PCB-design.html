@@ -18,6 +18,160 @@
 ## **Advices on PCB Design**
 ##### @benjaminpoilve
 
+This guide regroups some bits of wisdom I gathered while building PCBs for various projects. I think for some of those, you have to feel the pain before really using them. I know I did!
+
+Of course this guide is related to my personnal workflow. Some of the findings can be generalized, some don't.
+
+My workflow is the following:
+
+* Use [Farnell](https://www.farnell.com/) to choose composent (Though I might switch, their website is terrible and getting worse every year)
+* Use [Eagle](https://www.autodesk.com/products/eagle/overview) to design the PCB
+* Use [Eurocircuit](https://www.eurocircuits.com/) for production
+
+The reason for that choice is that:
+
+* Farnell offer 24h delivery and Eagle trace for some of its catalog
+* Eagle is free and a pretty good software once you understood its quircks
+* Eurocircuit is reasonnably fast, reasonnably cheap and has a great visualisation tool that interfaces well with Eagle
+
+Ok so let's get started!
+
+#### BOM and circuit design
+
+The first step is to go from specifications to a circuit design. This is a step where you have to work with a lot of variable so it is important to have a clear methodology to avoid mistakes. Using a breadboard to test assumptions is always a good idea.
+
+**Don't reinvent the wheel**
+
+It is important to keep in mind that a lot of proven design are available for common functions. You have to use them! My personnal sources are:
+
+* Open-source manufacturers (Polulu, Sparkfun, Adafruit): they open-source hoobyist-friendly (ie abuse-friendly) boards with commonly available components. It is a good idea to copy their designs
+* Reference design: manufacturer provide reference implementation in the datasheet. Good for unknown parts.
+* Forums (EEVblog, Reddit /askelectronics), a good place for some more obscure needs.
+
+
+**Select the right components**
+
+My personnal set of criterias:
+
+* The part is available
+* The part is common (and available in more that one package)
+* The documentation is good and include a few reference designs
+* They have an Eagle Trace (nice to have)
+
+While these rules allow me to weed out most of the components, it is a good idea to have a personnal ruleset to further limit component variety.
+
+The one I use:
+
+* Component in size 1206 or at leat pitch 0.1''
+* Molex connector
+* Only 3.3v and 5V components
+
+It helps because:
+
+* It avoids mistakes in component selections (an incompatible trace is visually detectable)
+* It helps re-use designs by making them all compatible
+* It frees your mind from trivial choices.
+
+**Use versionning**
+
+This is always a good idea, and github can work very well for this usage. You can use that to share an Eagle library and all of your intermediate design.
+
+It is usefull because then you can:
+
+* Re-use all of your tested designs
+* Simplify conception by breaking it down into a list of simple problems, most of them you have already solved
+* Isolate problematic part of your board to track down bug more easily.
+
+
+
+#### Board design
+
+Eagle is hard to use, but I tend to think this is on purpose. Everything is cumbersome, but you have to be very carefull when designing a PCB since it is hard to spot an error later on. So all of the UI constraint force you to be very rigorous. Don't fight it, embrace it!
+
+**Schematics**
+A schematic needs to be:
+
+* Readable connection-wise
+* Modular component-wise
+* Have a clear architecture
+
+Some advice:
+
+* Always use straight nets
+* Never (or almost never) cross nets
+* Name all nets
+* Use name linking to split functions
+* Give name to all components
+* Give name to all components pins
+
+This is necessary to be able to detect unavoidable mistakes.
+
+
+![](/sources/images/pcb-exemple.png)
+
+*A bad and a good design*
+
+
+**PCB**
+
+
+* Always have a ground plane (except special capacitive/rf cases)
+* Choose the right DRC and follow it. If you ignore errors, you have the wrong DRC
+* Use one via/net size, except for high power application.
+* Route by hand, route logically
+
+
+#### Production
+
+**Testing**
+
+Since components take 24h and a PCB between 48 and 240h, it is a good idea to print the PCB drawing and to put each component at his position. This helps making sure you have the right traces and avoid other silly mistakes.
+
+**Fab Houses**
+
+This step is not very complicated but you have to choose the right Fab House.
+
+My personnal list:
+
+* [Eurocircuit](https://www.eurocircuits.com/): Fast, not that expensive and perfect quality. At least 7 days and 100 euros for 10 PCBs.
+* [SeedStudio](https://www.seeedstudio.com/fusion_pcb.html): Shipped in a week, cheap and good quality. About 2 weeks and 10 euros for 10 PCBs. PCB assembly for 0.1€/pin in 20-30 days.
+* HQPCB: available in [Chinese](http://www.hqpcb.com/quote.html) and [English](https://www.kikipcb.com/index.html). Shipped in 24h, 70 euros and 3-4 days (with shipping) for 10 PCBs.
+
+#### Assembly
+
+Always a stressfull time for the PCB designer. It is easy to mess up, especially the first few prototype. Personnaly, I only do it in the morning, late night is recipe for trouble.
+
+**Tooling**
+
+* Soldering iron
+* Multimeter: might be usefull to have two, one with modified header for test points
+* Component boxes
+* Light table: to see both side of the PCB
+* Oven: for the reflow soldering
+* Fridge: to keep the flux!
+
+**Widlarization**
+
+When a component is broken, destroy it with as much violence as possible, it:
+
+* blows of steam
+* avoid having the broken component find its way back into the good component bin.
+
+**Testing**
+
+It's a good idea to have a test procedure. Usually it is a program that will test all of the chip preripheral. If you are building one-off or small batch, testing while assembly might be a good idea. Starting with power supply and regulators then checking that the output is within specs is a good way to avoid frying components.
+
+
+#### Iterate
+
+Whatever the result of project is, it is important to consider every project as the possibility to get experience.
+
+Ideally you should always finish a project and have:
+
+* Some re-usable technical blocs
+* Some new BOM elements that are familiar
+* Some new process that help you speed up your development time.
+
 
 [1/0/0]
 
