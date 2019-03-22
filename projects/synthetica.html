@@ -1,0 +1,118 @@
+<link rel="stylesheet" type="text/css" href="https://benjaminpoilve.github.io/FlexDownEditor/template.css" media="all">
+<link rel="shortcut icon" type="image/png" href="/sources/ico.png"/>
+<title>Projects</title>
+<script src="https://benjaminpoilve.github.io/FlexDownEditor/flexdown.js"></script><noscript>
+///
+[0/0/9]
+## [:house:](/projects)
+
+[1/1/0]
+#### [**Home**](/) 
+#### [__**Projects**__](/projects) 
+#### [**Other**](/other) 
+
+
+    
+[3/4/9]
+###### Friday,March 22 2019
+## **Synthetica**
+##### @benjaminpoilve
+
+A few weeks ago, I had an idea for a musical instrument. Though I am in no way a trained musician, I always had been interested in the way music is composed and written. I particularly took interest in "scale-level" type description. The basic idea being that with a particular fondamental in mind, the chords used in a song can be described as level relatively to a fondamental. 
+
+For exemple, if my fondamental is E, the A is the fourth (5 semitone up), and B is the fifth (7 semitone up). So the typical guitar blues progression E-A-E-B-A-E can be described as I-IV-I-IV-V-IV-I. Though it is not obvious in this description, this is a particularly useful way to write music, robust to transposition. 
+
+It turns out this is also a useful way to think of music for composing. Those chords progression are really interesting to analyse, and though it does not use this notation (but transpose all songs to the same fondamental, which does the trick), I can't recommend enough [this series of articles](https://www.hooktheory.com/blog/i-analyzed-the-chords-of-1300-popular-songs-for-patterns-this-is-what-i-found/).
+
+So I wanted to design an instrument whose interface reflected this principle. So here it is! The synthetica!
+
+#### Design
+
+I wanted to design a handheld synthesiser, in which one hand select the current chord as a level on a pre-selected scale, and the other select a note in that chord. Based on the finding from the former article I chose the following level in scale :
+
+* I
+* ii
+* III
+* IV
+* V
+* vi
+* iii
+
+So this is an almost full major scale with a minor third (Caps mean major chord, no caps means minor). If you are wondering why, this is because those are the most used chords in pop music.
+
+For the note pad, I choose:
+
+* Fondamental, ie 1
+* Third, ie 3
+* Fifth, ie 5 
+* Octave, ie 8 
+
+The idea being that you can use the full chord or any combination that you want. The geometry of the pad reflect that idea. 
+
+![](/sources/images/synth-01.png)
+![](/sources/images/synth-02.png)
+
+
+I decided to use capacitive pads for a few reasons:
+
+* Reliable
+* No moving part
+* Cheap
+
+Unfortunately, the Teensy I choose did not have enough capacitive input, so I had to use a dedicated IC. I choose the cheap a solderable [QT2120](https://www.mouser.fr/ProductDetail/Microchip-Technology-Atmel/AT42QT2120-XUR?qs=sGAEpiMZZMsVh0scArXy39GoFU3Q6EzjtRsYSCRuHwE%3d). Easy enough to use, as Phillip Dupree had written I library that I completed to be able to use all the inputs. 
+
+![](/sources/images/synthetica-capsense.png)
+
+
+The pad themselves were designed following some of the steps in that guide. 
+
+For the sound output, I used a cheap and solderable [CS4344](https://www.mouser.fr/ProductDetail/Cirrus-Logic/CS4344-CZZ?qs=sGAEpiMZZMuYaq4aOfOV%252bEKBckiASbBM). Few external component, something that I always want with audio as less-than-ideal PCB design can lead to loss in sound quality pretty quickly. 
+
+![](/sources/images/synthetica-audio.png)
+
+
+Not much else in the build!
+
+
+#### Code
+
+The code is still crude, but it works. The main question being what parameters to assign the potentiometer. I based this build on [this great project](https://github.com/otem/teensypolysynth). Though it is not clean, it is easy enough to read and I grouped all the parameters in one function. I choose to use an "organ" sound, so I mapped the potentiometers as follow:
+
+* Delay Time
+* Delay Feedback
+* Octave Detune
+* LFO Frequency
+* LFO Detune
+* LFO mix
+
+over two sinusoidal shaped waves. I think this is quite pleasing, but not at all representative of all the sonic possibilities. 
+
+#### First prototype
+
+After a few frights (see [this thread](https://forum.pjrc.com/threads/55137-I2S-output-with-CS4344) ), It worked! 
+
+A few design mistakes of course, but nothing catastrophic, I documented everything on my github to get things right next time. 
+
+Without further ado, the demo! 
+
+<iframe width="100%" height="315px"
+src="https://www.youtube.com/embed/qKJA9doyT88">
+</iframe> 
+
+
+
+##### [[More Informations and Data]](https://github.com/BenjaminPoilve/Synthetica)
+
+[1/0/0]
+
+///
+[1/0/1]
+[1/3/4]
+---
+[1/0/1]
+
+///
+
+[9/9/9]
+##### 2019, created with [Flexdown](https://github.com/BenjaminPoilve/FlexDownEditor)
+##### @benjaminpoilve
