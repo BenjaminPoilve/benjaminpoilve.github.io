@@ -1,0 +1,480 @@
+<html style=height:100%><!--
+ Page saved with SingleFile 
+ url: http://amasci.com/amateur/whygnd.html 
+ saved date: Wed Aug 07 2019 14:37:19 GMT+0200 (heure d’été d’Europe centrale)
+--><meta charset=utf-8>
+<title>WHY THREE PRONGS? Electrical ground, stray voltage</title>
+
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=prev href=http://amasci.com/ele-edu.html>
+<link rel=canonical href=http://amasci.com/amateur/whygnd.html>
+<meta name=description content="Why do AC cords need three
+prongs?  If there is no positive or negative in AC systems, why do we
+have HOT and NEUTRAL?  I attempt to shed light on some of these
+mysteries.">
+<meta http-equiv=keywords content=grounding,safety,three,prongs,polarized,hot,neutral>
+<meta name=google-translate-customization content=c3ed531053d636c5-1d98312485736f8d-g564ee6842740dee4-a>
+<style>.goog-te-gadget{font-family:arial;font-size:11px;color:#666;white-space:nowrap}.goog-te-gadget img{vertical-align:middle;border:0}.goog-te-combo{margin-left:4px;margin-right:4px;vertical-align:baseline}.goog-te-gadget .goog-te-combo{margin:4px 0}.goog-logo-link,.goog-logo-link:link,.goog-logo-link:visited,.goog-logo-link:hover,.goog-logo-link:active{font-size:12px;font-weight:bold;color:#444;text-decoration:none}.goog-te-combo{font-family:arial;font-size:10pt}.goog-te-spinner-pos{z-index:1000;position:fixed;transition-delay:.6s;left:-1000px;top:-1000px}.goog-te-spinner-animation{display:flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:50px;background:#fff url(data:image/png;base64,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) 50% 50% no-repeat;transition:all .6s ease-in-out;transform:scale(0.4);opacity:0}.goog-te-spinner{margin:2px 0 0 2px;animation:goog-te-spinner-rotator 1.4s linear infinite}@keyframes goog-te-spinner-rotator{0%{transform:rotate(0)}100%{transform:rotate(270deg)}}.goog-te-spinner-path{stroke-dasharray:187;stroke-dashoffset:0;stroke:#4285f4;transform-origin:center;animation:goog-te-spinner-dash 1.4s ease-in-out infinite}@keyframes goog-te-spinner-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}100%{stroke-dashoffset:187;transform:rotate(450deg)}}#goog-gt-tt div{margin:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;text-align:left;line-height:normal}div#goog-gt-tt{padding:10px 14px}#goog-gt-tt{color:#222;background-color:#fff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,.2);-moz-box-shadow:0 4px 16px rgba(0,0,0,.2);-webkit-box-shadow:0 4px 16px rgba(0,0,0,.2);display:none;font-family:arial;font-size:10pt;width:420px;position:absolute;z-index:10000}#goog-gt-tt .bottom{min-height:15px;position:relative;height:1%}#goog-gt-tt .status-message{background:-moz-linear-gradient(top,#29910d 0,#20af0e 100%);background:-webkit-linear-gradient(top,#29910d 0,#20af0e 100%);background:-o-linear-gradient(top,#29910d 0,#20af0e 100%);background:-ms-linear-gradient(top,#29910d 0,#20af0e 100%);background:#29910d;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;box-shadow:inset 0 2px 2px #1e6609;-moz-box-shadow:inset 0 2px 2px #1e6609;-webkit-box-shadow:inset 0 2px 2px #1e6609;color:white;font-size:9pt;font-weight:bolder;margin-top:12px;padding:6px;text-shadow:1px 1px 1px #1e6609}form.gsc-search-box{font-size:13px;margin-top:0;margin-right:0;margin-bottom:4px;margin-left:0;width:100%}table.gsc-search-box{border-style:none;border-width:0;border-spacing:0 0;width:100%;margin-bottom:2px}table.gsc-search-box td{vertical-align:middle}td.gsc-search-button{width:1%}td.gsc-clear-button{width:14px}.gsc-search-button{margin-left:2px}div.gsc-clear-button{text-align:right;margin-left:4px;margin-right:4px;padding-left:10px;background-repeat:no-repeat;background-position:center center;cursor:pointer}.gsc-search-box-tools .gsc-clear-button{display:none}.gsc-search-box-tools .gsc-search-box .gsc-input{padding-right:12px}input.gsc-input{font-size:16px}.gsc-input-box{border:1px solid #dfe1e5;background:#fff}.gsc-search-button-v2{font-size:0;padding:6px 27px;width:auto;vertical-align:middle;border:1px solid #666;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px}.cse .gsc-search-button-v2:hover,.gsc-search-button-v2:hover{border-color:#2f5bb7;background-color:#357ae8;background-image:linear-gradient(top,#4d90fe,#357ae8)}.cse .gsc-search-button-v2:focus,.gsc-search-button-v2:focus{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.5)}button::-moz-focus-inner{padding:0;border:0}div.gsc-clear-button{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjlFQzUyOEI0MUIyMTFFMTk3OURDRDgxOTNEMUU3NTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjlFQzUyOEM0MUIyMTFFMTk3OURDRDgxOTNEMUU3NTYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyOUVDNTI4OTQxQjIxMUUxOTc5RENEODE5M0QxRTc1NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyOUVDNTI4QTQxQjIxMUUxOTc5RENEODE5M0QxRTc1NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqNWQQ8AAABuSURBVHjaYkxLS0tgYGDoB2LHWbNmXWBAAkA5AyC1H4gLmaCKBEACUAl0RSC5fkY0gQ8gk6FqUcQYsej+AFUIVwRyEiMOqxiQFYE4TAxEAuKtJtYzTOgCIN1QdzlCxcBBB1JYiO5wEEBTXAgQYADPAj2hXB7gKwAAAABJRU5ErkJggg==)}div.gsc-clear-button:hover{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEVJREFUGJWVkMsJADAIQ5+dyP2ncKP2JEjQ0uaYDzEC4O6bAalZNUWEdSYAUyLNylmXrsjgWKWnrGmE4q/6aczre661VTt0Ji1kJXG9bwAAAABJRU5ErkJggg==)}input.gsc-input,.gsc-input-box{border-color:#BCCDF0}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#336699;background-color:#E9E9E9;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;-moz-user-select:none;white-space:nowrap}.gsib_a{width:100%}.gssb_c{border:0}.gsib_a{padding:5px 9px 4px 9px}.gscb_a{line-height:27px}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}.gssb_c{z-index:5000}</style><link type=image/x-icon rel="shortcut icon" href=data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAuLi4AP9zcwD/Xl4AdXV1AP///wD/xMQAClV4APARKwCPj48A/4CAAC1uFgD/3t4AAAAAAAAAAAAAAAAAABAAAAABAAAAAAnMzJAAAAAJVVV7u5CQAJVWq7tbOQAQVVqrt4c1AAlVa4h3hTOQBVaIgoiIw5AFVjMiuIgjkAVWMyu7eMOQBVaIy7vII5AJVoiMsnjDkABVKIi3gjMAAJU8iLfDOQAACVzIeIOQCQkABMzJkAAAAAABAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA></head>
+<body style=position:relative;min-height:100%;top:0 bgcolor=#ffffff><div style=display:none class=skiptranslate></div>
+<table summary="nav links, google search window" width=100% height=77><tbody><tr valign=top>
+<td>
+<center>
+<b>
+</b><table summary="Navigation links" cellpadding=5><tbody><tr valign=top><td align=CENTER><font size=2><b>
+<a href=http://amasci.com/miscon/elect.html>MISCON</a>&nbsp;&nbsp;| </b></font></td>
+<td align=CENTER><font size=2><b>
+<a href=http://amasci.com/elect/elefaq.html>ELECTRICITY FAQ</a>&nbsp;&nbsp;| </b></font></td>
+<td align=CENTER><font size=2><b>
+<a href=http://amasci.com/ele-edu.html>ELECTR. ARTICLES</a>&nbsp;&nbsp;| </b></font></td>
+<td align=CENTER><font size=2><b>
+<a href=http://amasci.com/news.html>NEW STUFF</a>&nbsp;&nbsp;| </b></font></td>
+<td align=CENTER><font size=2><b>
+<a href=http://amasci.com/unew.html>GOOD STUFF</a>&nbsp;&nbsp;| </b></font></td>
+<td align=CENTER><font size=2><b>
+<a href=http://amasci.com/search.html>SEARCH</a></b></font></td>
+</table>
+</center>
+</td>
+<td summary="google search" valign=top align=right>
+<div id=google_translate_element><div class="skiptranslate goog-te-gadget" dir=ltr><div id=:0.targetLanguage style=display:inline><select class=goog-te-combo aria-label="Widget de traduction"><option value selected>Sélectionner une langue<option value=fr>Français<option value=af>Afrikaans<option value=sq>Albanais<option value=de>Allemand<option value=am>Amharique<option value=ar>Arabe<option value=hy>Arménien<option value=az>Azéri<option value=eu>Basque<option value=bn>Bengali<option value=be>Biélorusse<option value=my>Birman<option value=bs>Bosniaque<option value=bg>Bulgare<option value=ca>Catalan<option value=ceb>Cebuano<option value=ny>Chichewa<option value=zh-CN>Chinois (simplifié)<option value=zh-TW>Chinois (traditionnel)<option value=si>Cingalais<option value=ko>Coréen<option value=co>Corse<option value=ht>Créole haïtien<option value=hr>Croate<option value=da>Danois<option value=es>Espagnol<option value=eo>Espéranto<option value=et>Estonien<option value=fi>Finnois<option value=fy>Frison<option value=gd>Gaélique (Écosse)<option value=gl>Galicien<option value=cy>Gallois<option value=ka>Géorgien<option value=el>Grec<option value=gu>Gujarati<option value=ha>Haoussa<option value=haw>Hawaïen<option value=iw>Hébreu<option value=hi>Hindi<option value=hmn>Hmong<option value=hu>Hongrois<option value=ig>Igbo<option value=id>Indonésien<option value=ga>Irlandais<option value=is>Islandais<option value=it>Italien<option value=ja>Japonais<option value=jw>Javanais<option value=kn>Kannada<option value=kk>Kazakh<option value=km>Khmer<option value=ky>Kirghiz<option value=ku>Kurde<option value=lo>Laotien<option value=la>Latin<option value=lv>Letton<option value=lt>Lituanien<option value=lb>Luxembourgeois<option value=mk>Macédonien<option value=ms>Malaisien<option value=ml>Malayalam<option value=mg>Malgache<option value=mt>Maltais<option value=mi>Maori<option value=mr>Marathi<option value=mn>Mongol<option value=nl>Néerlandais<option value=ne>Népalais<option value=no>Norvégien<option value=uz>Ouzbek<option value=ps>Pachtô<option value=pa>Panjabi<option value=fa>Persan<option value=pl>Polonais<option value=pt>Portugais<option value=ro>Roumain<option value=ru>Russe<option value=sm>Samoan<option value=sr>Serbe<option value=st>Sesotho<option value=sn>Shona<option value=sd>Sindhî<option value=sk>Slovaque<option value=sl>Slovène<option value=so>Somali<option value=su>Soundanais<option value=sv>Suédois<option value=sw>Swahili<option value=tg>Tadjik<option value=tl>Tagalog<option value=ta>Tamoul<option value=cs>Tchèque<option value=te>Telugu<option value=th>Thaï<option value=tr>Turc<option value=uk>Ukrainien<option value=ur>Urdu<option value=vi>Vietnamien<option value=xh>Xhosa<option value=yi>Yiddish<option value=yo>Yorouba<option value=zu>Zoulou</select></div>&nbsp;&nbsp;Fourni par&nbsp;<span style=white-space:nowrap><a class=goog-logo-link href=https://translate.google.com/ target=_blank><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAQCAYAAABgIu2QAAADVUlEQVR4AcxUA9AdPRRNbdu2+7K//+4mW9vWqNbYU2z21bZt27Zt+6nK5lUftrkPO7V1Zu7iZnJycoUc2HYC4hZVKROjqCnmEdMaoDJRHv1g4HmNKuCFjVX0OajeO5CWML5eCrSlnaGMr5VCr4X+mdXrhwpd0GgKXtDgAPoUIJIgTDPFE42JalF37952QspE+6rG0zy/hVDdsDSInHy3Qp8Jr6pk99A/s7333ttRdrD3ramDRHbd/STTp4QG6F+5fNUq5kCvg5qWmxr8qWuincTxsWAu1bRKR42avCT4H1TFeXxU2ePTFRvMo7t2AmlI4ObkeWM2J9kTsyWJDSa/d8ZvSRFaU3vzzJohNkFA5Fnx8sz9mmGJt4XeVV2ZvTreFuWXZy29rqrJEYAwMUYKuYccgM+aAKRR0wweayOUwEdc++Tm034dK/e1in96CT7nocoO20YJpLh9MVsSnX65ObHyclviP+X3ORAbvri1kjJ+mxi8EmWiIjHFKeB9W6hXV+Z7iXITuMF8RBHyPDeKkHSDTeqAYO7XU6SavDgYYWKEjEYgoP6RG27pp7iOUwI6bgQ+MShn+XAkkzprMZuTNgLfxlmNC0AUNca7OIEwecP3CZXCglLsCMk7xEtcDyAwcAYC/GfyLHKTRQ2xEBoIvYbave2U0n8exhWkPZKS2o7Qyrgh+F70z1khnO5EzlrMpqQNwbdhVuvC4cwEO0bXNBas9yGhYF6qTPRWUd4ZjRDVJprJ42TktgEJzE/ZXM3k/0kp9CExHheC1Huo67CPuo7fr4JLy2YqC2Ughe6NpP6wTPfxFxuTlH6xJUlZKAOoWeCH0QfjTmVBHM4SP/Zeoboy20OUu16C//GSioW8FM/1UNwavQ4pVKUmP/x6bRJTbAdiFAFslkTHosXuJcqhe6RCPlh7tjlZwZhNiY46zbQpycH4rcnzRUuJGmKPw834ifcJffzffxl8FG8A7ohd9tGKFdEHR0g/q4wzRt5CKLI6LggG36+vQWRB8LONyQrAt8PZ25ta7/+sIBhMFBnd7pAp9AFAP/gJLmb3RgnRz4QUNhm6HsqKuIN1iclvUWZNQ78b/hnoT0MMMVsz+Qtq8JfQuGrvR+nR74omi+xEYOjVBgEYBQDoQD6ep9ySZwAAAABJRU5ErkJggg==" style=padding-right:3px alt="Google Traduction" width=37px height=14px>Traduction</a></span></div></div>
+<div>
+<div id=___gcse_0><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir=ltr><form class="gsc-search-box gsc-search-box-tools" accept-charset=utf-8><table class=gsc-search-box cellspacing=0 cellpadding=0><tbody><tr><td class=gsc-input><div class=gsc-input-box id=gsc-iw-id1><table style=width:100%;padding:0 id=gs_id50 class="gstl_50 gsc-input" cellspacing=0 cellpadding=0><tbody><tr><td id=gs_tti50 class=gsib_a><input autocomplete=off type=text size=10 class=gsc-input name=search title=search style="width:100%;padding:0;border:medium none;margin:0;height:auto;background:#ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAQCAQAAADDwIVhAAAB7klEQVR4AdWUA7BWURSF+5Ft27Zt27ZtW4Ns29aX7Rpl1yDbrrvbc6Zn+73LhXvWPY4U8Q9i0pQtnGUTdYgZwLIOSlEYu092Hm7wgwOs4RACAQyPwWm2EdV7MxaPuEZBoimORlHKBTA8OodY51N4L/5QxlvHqQVtrsymzOnOjUI0j+HYiInNY8QJzhPHoITkIbc5YxGXRYieL2lhvBaKBEvVuMoycxzhK6d4TwHQcAcNzRdf6Ok+/BqHcZr/9kPM+ZXK7OIvrSnBfISaeoqiEqr8VScG57lDdapwGaEo+1hJcSxWkJ3ZCB3cwjdyi1QGxSMLmSiM0J8vTP/vv2CDni/+s+nqdEIjDauHUETDF7FM9Roc4A/nKO0WXgahh9tUYhAvacY3Rv3n99ip573/bJQ6/REyGFYBy4QvZD3CDzaQ0dM8VUuYQFFT63EIU01nPSE/SeiI0E1PUZRElSdcJQ2P2ElGfW/6X/Pl1EGYSQwyM4MCHmfqEP7yg1f8QhhoRj4zd7B4gjAPh57zEGWWqpnUrc4P3vKaFwhFOckOojAC4SkfeU4ur+usPO2oSBQPK681qVx5KmWlcPxn0WhIOdogZCSRnjbVUtKSykHfLLaxgmQkZzevgn8vqs9rPvCe51QK/nAb8SlEERL6/M0/SoB55gUBIU8AAAAASUVORK5CYII=) no-repeat scroll left center;text-indent:48px;outline:currentcolor none medium" id=gsc-i-id1 placeholder="Custom Search" dir=ltr spellcheck=false value><td class=gsib_b><div class=gsst_b id=gs_st50 dir=ltr><a class=gsst_a href=http://amasci.com/ style=display:none title="Clear search box" role=button><span class=gscb_a id=gs_cb50 aria-hidden=true>×</span></a></div></table></div><td class=gsc-search-button><button class="gsc-search-button gsc-search-button-v2"><svg width=13 height=13 viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button><td class=gsc-clear-button><div class=gsc-clear-button title="clear results">&nbsp;</div></table></form></div></div>
+</div>
+</table>
+<table summary="main article" width=100%><tbody><tr valign=top>
+<td summary=spacer width=15><td width=800><font size=4>
+<center>
+<h1>WHY THREE PRONGS?<br>
+<font size=4>©1996 <a href=http://amasci.com/me.html>William Beaty, BSEE</a></font></h1>
+</center>
+<p>
+<b>QUESTION:</b><br>
+WITH AC POWER, AREN'T BOTH WIRES OF THE PAIR INTERCHANGABLE? &nbsp; Why is one
+wire called "neutral?" &nbsp; What's all this stuff about "grounding?"<br>
+Why are three prongs needed?
+<br></p>
+<p><font size=2>Also see below: <a href=http://amasci.com/amateur/whygnd.html#gnd>WHY "GROUND" IS CONFUSING</a>
+</font><br></p>
+<font size=2>
+<pre>        __________________________
+       /                          \
+    /     _                          \
+   |     | |                   _      |
+  |      | |                  | |      |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  |_|       |
+ |       |_|                            |
+ |                 ____                 |
+ |                /    \                |
+  |              |      |              |
+   |             |______|             |
+    \                                /
+       \__________________________/
+</pre>
+</font>
+<p>
+<b>ANSWER:</b><br>
+Yes, in an Alternating Current system there is no "plus" and "minus," 
+so <i>in theory</i> the two wires should be interchangable. However, the
+real world is a bit more complex than the theory. Other issues crop up
+and cause trouble. <br></p>
+<p>
+If you were to build your own electric power distribution system, you'd
+quickly discover some unexpected and strange effects. Sometimes your
+customers' appliances would fail for no apparent reason. And sometimes
+when you reached for a light switch, a foot-long spark would leap out to
+your hand and knock you senseless! What the heck?! It takes a huge DC
+voltage to make a foot-long spark. Why are high DC voltages appearing on
+your AC power lines? 
+<br></p>
+</font><td></table>
+<table summary="main, continued" width=100%><tbody><tr valign=top>
+<td summary=spacer width=15><td width=800>
+<font size=4>
+<div summary="google ad" style=width:180px;height:610px;margin-right:1px;margin-top:1px;float:left>
+</div>
+<p>
+The sparks occur because of a little-known fact: all the world is a
+gigantic electrostatic generator. There is a flow of charge going on
+vertically everwhere on earth. Thunderstorms pump negative charge
+downwards, and the charge filters upwards everywhere else on earth. 
+Depending on the height of your circuitry above the earth's surface,
+depending on the area covered by your wires, and depending on whether
+there was a thunderstorm above you at the time, there might be a fairly
+huge DC charge on your electrical distribution system. This charge might
+be several hundred volts; enough to zap computers and delicate
+electronics. Or... it might be many tens of thousands of volts, enough to
+create enormous sparks which jump across switches and leap out of wall
+outlets, wall switches, across transformer windings, etc. Your electric
+power system is acting like a sort of capacitive "antenna" which
+intercepts the feeble current coming from the sky and builds up a huge
+potential difference with respect to the earth. 
+<br></p>
+<p>
+In addition to the above, you would find an unsettling phenomenon whenever
+lightning directly strikes your electrical distribution system. The 
+lightning impulse-voltage spreads instantly throughout your whole network, 
+which not
+only can explode every single appliance plugged in at the time, but can
+create lethal arcs many feet in length that reach out to "touch" your
+customers should they be anywhere near those wires within the walls. 
+<br></p>
+<p>
+There is a simple solution to these problems: connect your system to the
+Earth. Drive some long metal rods into the dirt, and connect them to
+your wires. That way, lightning currents will be directed into the Earth
+rather than spreading throughout your power lines. Also, the 
+clear-weather sky current can no longer build up a high voltage, if any
+excess charge immediately leaks into the earth.
+<br></p>
+<p>
+Of course you cannot connect BOTH wires to ground, since that would also
+connect your wires to each other and short out the system. So, you must
+close your eyes and pick one wire. Connect that wire to ground. Do this
+at many points throughout your system of power lines, so if one part is
+disconnected for any reason, it won't present a lightning hazard or static
+discharge hazard. Now the clear weather sky-voltage will be discharged to
+Earth, and during a lightning strike, the huge current will be diverted
+into ground at many points, and hopefully will find very few customers'
+bodies on its way into the earth.
+<br></p>
+<p>
+The story isn't over. Since you've made a change to your system, Murphy's
+Law crops up and informs you that for every problem that you cure, another
+one is created. Before you "grounded" your system, the AC voltage in
+general acted pretty safe for your customers. The only way they could get
+a shock was if they touched both wires at the same time. This was a
+fairly rare occurrence. One single wire acted as if it was "safe," and it
+did not deliver shocks. If a miswiring inside an appliance caused one
+wire to accidentally touch the metal case of the device, your customers
+could still touch that metal case without danger. Curious kids might
+still stick their finger in a light socket and receive a shock, but the
+unwanted current was directed through the length of their finger and 
+caused no danger of heart-stoppage.
+<br></p>
+<p>
+<div summary="google ad" style=width:320px;height:260px;margin-left:10px;margin-top:1px;float:right>
+</div>
+<p>
+Now that you've grounded your system, you'll find that suddenly your
+customers are occasionally dying! One wire of your system is now almost
+totally safe because it is connected to ground. But the other wire has
+developed a new hazard, because whenever the occasional customer comes
+into contact with it, that foolish customer is usually STANDING ON THE
+GROUND! By grounding half of your electric network, you've accidentally
+connected one entire half of your network indirectly to everyone's feet. 
+Most of the time the floor is a pretty terrible conductor, so most of the
+time the hazard is small. However, when someone stands barefoot upon a
+damp floor, this electrically connects that person into the system. If
+they touch the grounded ("neutral") wire in the AC system, nothing
+happens. But if they touch the other, non-grounded wire, this applies the
+full AC voltage between their feet and finger. The new unwanted current 
+path within
+their body then includes the heart muscle, and the resulting AC current
+induces rapid, tail-chasing heartbeat waves called 'fibrillation' in their
+main blood pump. And so your new, half-grounded AC system has developed a
+lethal characteristic. Unfortunately, removing the ground connection
+causes even more danger, so you can't go back to a "floating" system where
+Hot and Neutral don't exist. 
+<br></p>
+<p>
+One solution would be to insist that all customers wear dry, insulating
+footwear, never walk on wet floors, never sit in bathtubs, etc. This
+guarantees that they are not connected to one half of your system, and it
+makes the other half of the system act safe again should they touch it by 
+accident.
+Professional electricians might enjoy the challenge of learning all these
+rules, but your new requirements would cause some negative repercussions
+in selling your service to non-experts. To say the least. Some other
+solution is needed.
+<br></p>
+<p>
+The solution: guarantee that no one touches the non-grounded wire. Get
+into the schools and pound into everone's mind that AC wires are
+dangerous. Teach all electricians and technical people that one of the
+wires is now to be called "Hot", and that this wire can be lethal if
+touched. Choose differing colors for the two wires (black is "hot" in the
+US, brown is "hot" most everywhere else.) Force manufacturers to treat
+the wires differently inside appliances, designing with careful wire
+positioning and adding extra insulation to the "hot" wire.
+<br></p>
+<p>
+Another problem springs up. At present, some appliance manufacturers
+INTENTIONALLY connect the outside of their metal products to one of the
+power wires. This must be stopped. But economic concerns prevent making
+massive, instant changes. You can't force a recall of half the appliances
+in the entire world, and you can't force manufacturers to instantly
+redesign all their products. The economic upheaval from this would wreck
+far more lives than the dangerous circuitry does. So instead you decide
+to change the power outlets of all new homes, as well as changing the
+plugs of all new appliances, in order to force customers to always stick
+the plug in the "right" way. Manufacturers must use the new types of
+cords, but at least they don't have to redesign all of their products. 
+For appliances with one wire connected to the metal case, this connects
+the case to the grounded or "neutral" side instead of to the "hot" side. 
+Now make one slot of the two-slot electric outlet longer than the other. 
+Do the same with the appliance plugs. Choose the neutral side to be the
+wide slot, the hot side to be the shorter slot. Apply legal pressure to
+get manufacturers to stop connecting their metal cases to the power wires. 
+Make electricians preserve the polarity of the wiring when they install
+outlets in new homes. Thus we enter the "Age of the Electrical Outlet
+with One Long Slot." 
+<br></p>
+<font size=2>
+<pre>        __________________________
+       /                          \
+    /                                \
+   |                                  |
+  |       _                            |
+ |       | |                   _       |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  |_|       |
+ |       |_|                            |
+  |                                    |
+   |                                  |
+    \                                /
+       \__________________________/
+</pre>
+</font>
+<p>
+Things now seem much improved, but there are still problems. If an
+appliance is dropped into water, and if that water is touching a grounded
+container (such as a bathtub, a kitchen sink, or even a basement floor or
+a standing pool outdoors) then any human sticking more than one appendage
+into the water will be in serious trouble. Humans are salt water, and
+they present a low-resistance path for current, which preferentially
+directs it through their bodies rather than through the water. Another
+thing: sometimes an appliance with a metal case will suffer internal wear
+or damage, and then the "hot" wire will wiggle around inside and end up
+touching the metal case. Anyone standing on wet ground will feel pain and
+death if they should grab that metal case. 
+<br></p>
+<p>
+Some unnamed genius realizes that if we could somehow permanently connect
+all the metal cases of appliances to the "neutral" wire, then if the "hot" 
+wire should ever accidentally touch the case, a short circuit would blow
+the fuses in the building and quickly remove the electrical connections,
+and the hazard. However, this is not entirely safe. Occasionally an
+electrician will accidentally wire an outlet backwards. This can't be
+helped, because Perfect Electricians are far more expensive than the
+normal human variety. And so we cannot intentionally wire appliance cases
+to the Wide Prong of the plug, since it would cause a lethal hazard if the
+appliance was plugged into a miswired wall outlet. Miswired outlets look
+exactly the same as the normal ones. 
+<br></p>
+<p>
+The solution? Why, add a Third Prong! Connect this prong to the neutral
+side of the network, but do it only in one place in the circuit, and run a
+new third wire out to all of the wall-outlets. Give this wire a new
+color, one which is different from the other two. Give this this third
+prong a very different shape as well, so even Highly Imperfect
+Electricians will rarely connect the special prong to the wrong wire. 
+And inside all the metal-cased appliances, insist that manufacturers 
+connect this third wire to the case. 
+<br></p>
+<p>
+The idea works! Like magic the faulty metal-cased appliances start
+blowing their fuses to indicate trouble. And power tools dropped into
+water will create a current path to the metal case rather than to nearby
+humans standing in the puddle. We've entered the "Age of Electrical
+Outlets Having a Little Face and Different Sized Eyes."
+<br></p>
+<font size=2>
+<pre>        __________________________
+       /                          \
+    /     _                          \
+   |     | |                   _      |
+  |      | |                  | |      |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  | |       |
+ |       | |                  |_|       |
+ |       |_|                            |
+ |                 ____                 |
+ |                /    \                |
+  |              |      |              |
+   |             |______|             |
+    \                                /
+       \__________________________/
+</pre>
+</font>
+<p>
+But still, every once in a while a Customer will get a really nasty shock
+from a cheap 2-prong plastic appliance that's wet. Or perhaps an electric 
+hair
+dryer will fall into the bathtub, but the short-circuit current in the
+water won't be enough to blow the fuses in the house, and the bathtub
+water will become lethal. In theory there is a way to prevent this. 
+These Customer shocks are happening because the customers' bodies offer a
+path for current between the appliance and the lightning-safety earth
+grounds. During the shocking event, some of the AC flowing charge is 
+going in (and out) of the "hot" wire, but it is NOT going back into (and 
+out of) the "neutral" wire as it's supposed to. Instead, it's going 
+through the
+human, and also going into the grounded pipes of the plumbing.
+<br></p>
+<p>
+If we could measure the current that's taking the "wrong" path, maybe we
+could detect the problem and turn off the power before anyone dies. We
+can't measure the current in the plumbing, but we can measure it in the
+"hot" wire, measure the current in the "neutral" wire, then subtract
+them. This tells us the value of electric current escaping via the 
+"illegal"
+path through the human to ground. The subtraction should normally give a
+zero result, since there never should be a current path to ground that
+isn't using the neutral wire. If we amplify the subtraction's result and
+use it to trip a circuit breaker, we'll have a new type of appliance which
+turns itself off immediately when any human gets into the electrical path. 
+These devices are now required in wet areas of homes (bathrooms.) They're
+called Ground Fault Interrupters. And so we've finally entered modern
+times, the "Age of the Electric Outlet with the Little Red Button Which
+Pops Out!" 
+<br></p>
+<p>
+- Bill Beaty
+<br></p>
+<h3>Other articles here:</h3>
+<ul>
+<li><a href=http://amasci.com/ele-edu.html>billb collected essays on Electricity</a>
+<li><a href=http://amasci.com/sc/proj/kidprojc.html rel=nofollow>Science projects here</a>
+and <a href=http://amasci.com/sc/proj/kidprojb.html rel=nofollow>more</a>
+<li><a href=http://amasci.com/amateur/videos.html>My Youtube vids</a>
+<li><a href=http://amasci.com/unew.html>Amasci: all the good stuff</a>
+<li><a href=http://amasci.com/search.html#popu1>amasci article list: popular</a>
+</ul>
+<br>
+</font><td></table>
+<center>
+<table summary="google ad">
+<tbody><tr><td summary="google ad" align=center>
+</td>
+<td>&nbsp;</table>
+</center>
+<br>
+<center>
+<br></center>
+<br>
+<table summary="main, continued" width=100%><tbody><tr valign=top>
+<td summary=spacer width=15><td width=800>
+<font size=4>
+<a name=gnd></a>
+<hr>
+<h2>MORE ABOUT "GROUNDING" AND "EARTH"</h2>
+<p>
+In electrical circuits, the word "ground" can be very confusing. The word 
+has several different meanings. In any spoken sentence, your science 
+teacher 
+might know which 
+meaning he or she is using. But this can spread 
+confusion, because students aren't even aware of the 
+multiple meanings. Or, even when students know that "ground"
+is a multi-facted term, they may lack skill in connecting up each 
+definition. It's always a bad idea to let science terms have more than
+one meaning. 
+Perhaps it's best to simply forbid use of the word "ground" 
+in the classroom. That forces everyone to use accurate and less-confusing 
+words.
+<br></p>
+<p>
+The word "ground" means:
+<ol>
+<li> A 'common' connection, but not connected to Earth.
+<li> A direct connection to the power supply (usually to the DC negative terminal.)
+<li> A point on a circuit used as a zero-voltage reference for measuring potential differences.
+<li> A connection to the inside of a shielded metal box.
+<li> A connection to a metal object much larger than the circuit (e.g. car chassis.)
+<li> A connection to a metal stake driven into the earth (or a connection 
+to a metal water pipe which extends out of the house into dirt.)
+</ol>
+Only number six is actually connected to ground!
+<br><p></p>
+</font><td></table>
+<center>
+<table summary="billb ad" width=100% bgcolor=#ffffff><tbody><tr><td>
+<table summary="billb ad" bgcolor=#e0e0e0><tbody><tr>
+<td colspan=4>
+<font size=3><b>STUPID BILL B. <a href=http://amasci.com/amateur/videos.html>VIDEOS</a>!</b></font>
+</td>
+<td colspan=2><font size=1>educational too. But no less stupid!</font></td>
+<td width=5></tr>
+<tr valign=top height=110>
+<td width=120 align=center>
+<a href="https://www.youtube.com/watch?v=XUy8lELWhJg" rel=nofollow>
+<img src="data:image/jpeg;base64,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" width=100%></a><br>
+<a href="https://www.youtube.com/watch?v=XUy8lELWhJg" rel=nofollow><font size=1>
+DRAW A HOLO<font size=1></font>GRAM</font></a>
+</td>
+<td width=120 align=center>
+<a href=http://www.metacafe.com/watch/1004040/ rel=nofollow>
+<img src="data:image/jpeg;base64,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" width=100%></a><br>
+<a href="http://www.metacafe.com/watch/1004040/%20rel="><font size=1>
+MICRO<font size=1></font>WAVE MAYHEM</font></a>
+</td>
+<td width=120 align=center>
+<a href="https://www.youtube.com/watch?v=k7Sz8oT8ou0" rel=nofollow>
+<img src=data:image/jpeg;base64,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 width=100%></a><br>
+<a href="https://www.youtube.com/watch?v=k7Sz8oT8ou0" rel=nofollow>
+<font size=1>SIMPLE GENER<font size=1></font>ATOR</font></a>
+</td>
+<td width=120 align=center>
+<a href="https://www.youtube.com/watch?v=77gWkl0ZUC8" rel=nofollow>
+<img src="data:image/jpeg;base64,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" width=100%></a><br>
+<a href="https://www.youtube.com/watch?v=77gWkl0ZUC8" rel=nofollow>
+<font size=1>BOTTLE SMASH!</font></a>
+</td>
+<td width=120 align=center>
+<a href="https://www.youtube.com/watch?v=c3B5I4rpMrs" rel=nofollow>
+<img src="data:image/jpeg;base64,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" width=100%></a><br>
+<a href="https://www.youtube.com/watch?v=c3B5I4rpMrs" rel=nofollow>
+<font size=1>EATING dry ice!</font></a>
+</td>
+<td <a href="http://www.youtube.com/watch?v=glCNP6qH_Dc" rel=nofollow width=120 align=center>
+<img src="data:image/jpeg;base64,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" width=100%><br>
+<a href="http://www.youtube.com/watch?v=glCNP6qH_Dc" rel=nofollow><font size=1>
+Dangerous Maglev!</font></a>
+<td width=5></td>
+</table>
+<td></table>
+</center>
+<br>
+<h2>LINKS</h2>
+<ul>
+<li><a href=https://electronics.stackexchange.com/questions/123906/ground-vs-earth-vs-common-vs-negative-terminal#282287>GND vs. Earth vs. common vs Negative</a>
+<li><a href=http://www.flickr.com/photos/bre/sets/72157611077138836/ rel=nofollow>Electrocution drawings</a>, 30 ways to die, "Elektroschutz in Bildern"
+<li><a href=http://www.darwinawards.com/darwin/darwin1999-50.html rel=nofollow>Death by 9V battery</a> 
+and <a href="http://cgi.darwinawards.com/cgi/search.pl?keywords=category%3Delectricity&amp;swishindex=stories.data&amp;show_description=yes&amp;maxdisplay=10&amp;maxresults=50" rel=nofollow>more</a>
+<li><a href=http://strayvoltagenyc.org/stray-voltage-creation rel=nofollow>Stray Voltage Hazard</a> in NYC
+<li><a href=http://www.allaboutcircuits.com/vol_1/chpt_3/3.html rel=nofollow>Shock-current path</a>
+<li><a href=http://web.archive.org/web/*/http://www.ralphmorrison.com/Ralph_Morrison/The_Ground_Dilemma.html rel=nofollow>The Ground Dilemma</a> (wayback)
+<li>Grounding the <a href=http://arxiv.org/ftp/arxiv/papers/0906/0906.3884.pdf rel=nofollow>Int'l Space Station</a> (pdf)
+<li><a href=http://amasci.com/ele-edu.html rel=nofollow>All Electricity Articles Here</a>
+<li><a href=http://amasci.com/amateur/elsafe.html>When currents *don't* shock</a>
+<li><a href=http://amasci.com/elect/elefaq.html>Electricity questions answered (FAQ)</a>
+</ul>
+<pre>
+
+
+
+</pre>
+<div id=goog-gt-tt class=skiptranslate dir=ltr><div style=padding:8px></div><div class=top style=padding:8px;float:left;width:100%></div><div class=middle style=padding:8px></div><div class=bottom style=padding:8px></div><div class=status-message style=display:none></div></div><center>
+<font size=3>
+<a href=http://amasci.com/amateur/whygnd.html>
+http://amasci.com/amateur/whygnd.html</a><br>
+Created and maintained by 
+<a href=http://amasci.com/billb.html>Bill Beaty</a>. Mail me at: 
+<a href=http://amasci.com/amfrm/>
+<img src="data:image/gif;base64,R0lGODlhjQATAPcAAAAA/3t7/5yc/62t/729/9bW/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ywAAAAAjQATAAAI/wANCBxIsKDBgwgTKlzIsKHDhxANEggAAGGAAAYmVtSYkWLEjyANXAxJ8iOAkxYxnqy40kDLkjATjoxJUyHKhTdzVqzJs6dPgzdt7tT5s6jRmCgJnCQgkKPLoVAzLh2oEUAAphwFTKUIgGnHk1cHUry686vVph6pcsVIdYDLsF8NaO06kC7Nm0rpviT6tOnUpwTyPgUgQO7JwoIBJw7r9K3Asy8fsz372G2BqSsLz61bFmZQpZOj9h0tlW1avqRvnh7qValAil61Pi4LW6BswwVsUw7Ku3PJoKP5oiZtdjbn42p1wjUOtCxw5FJFp/ZNErhw0dZpd0XdW+z2nXkpE7SH/pw58+7mPXe+fn79ztrcnb/X23lu6MIFe+Mn+De4fOjqDaRVaO2ZN2CB0yEnXGzz0eUaaVxhNR9+SuGH3njVEVaaX13lFRhmGoLG2YcdTuVhdEwtdaJVWLEVnol/vWjXiWmdaGN/MM2l4Wwr9fiSjvsZdhVsPQ7GUksDapSiRmyhxSKPZTHplZNPGmllkUdlqeWWXHbp5ZcN+SjmmGSWaeaZaKap5pplgunmm3DGKaebAQEAOw==" width=141 height=19 border=0></a>.
+<br>
+<center>
+<noscript><div class="statcounter">
+<a title="shopify stats" href="http://statcounter.com/shopify/" target="_blank">
+<img class="statcounter" src="http://c.statcounter.com/10408414/0/00267183/0/" alt="shopify stats"></a></div></noscript>
+<a href="http://statcounter.com/p10408414/?guest=1">View My Stats</a>
+</center>
+</font>
+</center><div class=goog-te-spinner-pos><div class=goog-te-spinner-animation><svg xmlns=http://www.w3.org/2000/svg class=goog-te-spinner width=96px height=96px viewBox="0 0 66 66"><circle class=goog-te-spinner-path fill=none stroke-width=6 stroke-linecap=round cx=33 cy=33 r=30></circle></svg></div></div><table style=width:338px;display:none;top:65px;position:absolute;left:794px class="gstl_50 gssb_c" cellspacing=0 cellpadding=0><tbody></table>
