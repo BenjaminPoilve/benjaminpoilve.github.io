@@ -19,11 +19,58 @@
 ## **Pedal Steel Neck Generator**
 ##### @benjaminpoilve
 
-#### Demo
+Most steel guitars (that include pedal steel, lap steel, console steel..) do not have fret, but do have a silk-screen printed metal or plastic plate to show the position of the notes across the neck.
+While it is possible to play without it (especially with a good ear), those markers are really helpful, especially when making wide moves.
+The position of the fret can be calculated quite easily once you know the scale length of the instrument, but digital drawing tools usually do not provide interfaces to use such formulas, which make the design of the neck template for silk-screen printing quite cumbersome.
 
+For a personal project, I had to make a tool to create such templates easily, so here it is !
+
+#### Neck template generator
+
+This project uses [OpenSCAD](https://openscad.org/), an open source parametric modeler. OpenSCAD has 3D capacity, even if we only use it as a 2D tool here.
+
+Basically a parametric modeler uses code to generate graphics. The big advantage is that once the code has been written, it is easy to change parameters and re-generate the template.
+
+![](/sources/images/scad_interface.png)
+###### The interface of OpenSCAD
+
+This project supports:
+* Changing the scale length, width, taper and corner angle of the outline
+* Choosing the number of frets to display and the width of the marker
+* Choosing the fret marker star shape, size, pattern across the neck and proportions
+
+I am of course open to modify to add option, If I find the time!
+
+The whole thing is published with a MIT license, feel free to use it in commercial project, but I would be happy to know if that was useful!
+
+The project and user guide is available [here](https://github.com/BenjaminPoilve/Steel-Neck-Generator)
+
+#### The project
+I play the pedal steel for about a year now, and I love everything about that instrument. The E9th tuning is incredibly smart, the sounds you can get are incredible. Well, not everything, I have to say, the weight of the instrument and difficulty to maintain and to tune is quite important.
+Being the hobby electronic designer that I am, of course my first reflex was to wonder if I could make a digital version of it.
+
+Imagine.. perfect tuning, changeable by the push of a button, impossible pedal combination and changes..
+
+Well of course, that all goes out the window if you can't provide the smooth sound of the tonebar of the string, so I'd need to design a neck sensor that would be both accurate and precise.
+
+My idea was to rely on a quite simple technology called "capacitive sensing". I had already used it in [another project](/projects/synthetica.html), but the challenge was here to design a continuous sensing zone that could record the slight wobble of the bar.
+
+That's the reason why I had to use OpenSCAD to make the sensing zone.
+
+![](/sources/images/neck_pcb.jpg)
+###### The PCB designed with the help of this tool
+
+It was the first time I used KiCAD to design a PCB (I was an Eagle guy), but I have to say I am convinced. The process to import the DWG was pretty straightforward.
+
+![](/sources/images/digital_steel.jpg)
+###### My digital steel (rough) prototype
+
+On the project itself, while I made a rough prototype of a digital lap steel (I currently do not have access to shop tools, cutting MDF with a hand saw on your dinner table is.. not fun), I still am in the conception phase for the "string sensor" part. The current capacitive sensor I use are not satisfactory to me.
 
 <video controls width="250"><source src="../sources/videos/Capacitive_neck.webm"type="video/webm">Sorry, your browser doesn't support embedded videos</video>
+###### Quick test of my neck sensor
 
+On the bright side, the neck works quite well ! Could use a few refinement, but this is a nice proof of concept. I also designed a pedal bar PCB with hall effect sensor to record the pedal position, but did not yet find the time to assemble it. Work in progress !
 
 [1/0/0]
 
