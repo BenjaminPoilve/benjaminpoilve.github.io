@@ -1,0 +1,115 @@
+<link rel="stylesheet" type="text/css" href="https://benjaminpoilve.github.io/FlexDownEditor/template.css" media="all">
+<link rel="shortcut icon" type="image/png" href="/sources/ico.png"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Projects</title>
+<script src="https://benjaminpoilve.github.io/FlexDownEditor/flexdown.js"></script><noscript>
+///
+[0/0/9]
+## [:house:](/projects)
+
+[1/1/0]
+#### [**Home**](/)
+#### [__**Projects**__](/projects)
+#### [**Other**](/other)
+
+
+
+[3/4/9]
+###### Monday, November 01 2021
+## **Robotic Pointillism**
+##### @benjaminpoilve
+
+As I said before, I've always been interested by CNC tools and especially drawing robots. This particular project is still a work in progress, but here are some early results.
+
+The machine itself is a quite standard "hanging plotter", using two steppers controlled by GRBL to move a shuttle across a vertical paper sheet.
+
+A lot of plotter project rely either on gel pens or felt-tip pen to draw, which can give excellent results, especially combined with generative vector design. While I love this kind of work, I wanted to try to work with paints and colors, and to see if I could produce results that stray away from usual CNC drawings.
+
+#### Choosing the tools
+
+My first tests were using a standard paintbrush with a little paint bucket attached to the head, but it was too difficult to devise a mechanism that ensured a constant paint dispensing in an open loop fashion. I thought about using a camera to have feedback on how your painting was going, but I instead choose to follow another path.
+
+My brother is [a talented mini painter](https://www.facebook.com/maneropainting/) and last Christmas he got an airbrush. Airbrush are actually quite easy to use and (especially single-action ones) to control using a simple solenoid.
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/Set-up_Airbrush.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtu.be/_cCxi442V3Q</video>
+###### Testing the airbrush
+
+My test showed that you could get a consistent color line quite easily, especially if you add a feeler to keep a constant distance from the paper (seen in later videos).
+
+
+#### Stippling
+
+The big challenge with CNC plotter is usually to go from a matrix image (for example a picture where every pixel has a color value) to a vector path that you can draw. If you work with point of color, a method that is commonly used is the [Weighted Voronoi Stippling](https://dl.acm.org/doi/10.1145/508530.508537).
+
+This method seeks to replicate the manual stippling method by applying a number of "relaxations" through centroidal Voronoi diagrams weighted by a grayscale bitmap. This method was popularized in the plotter community by the [Evil Mad Scientist implementation.](https://www.evilmadscientist.com/2012/stipplegen-weighted-voronoi-stippling-and-tsp-paths-in-processing/)
+
+My first test used a simple stippling based method. The target image (on the picture below one of the most famous picture of this century), is split, and stippling is applied on the red and blue channel.
+
+Each channel is then drawn using red and blue ink.
+
+![](/sources/images/stippling_test.jpg)
+###### 2 colors stippling test
+
+As you can see, while this technique shows promise, the naive method does not allow proper color rendering. There is two main issues:
+* mixing of additive and subtractive logic of color synthesis in the
+* some sort of moiré effect between the two layers of stipple
+
+We'll see how these issues can be fixed, but first a bit of context on the title of this article.
+
+#### Pointillism
+
+Pointillism is an artistic movement from the late nineteenth century. The basic idea is to paint using small dots of colors, leaving the color blending itself to the eye of the viewer. It's important to note that the term pointillism was invented to ridicule painters that used this technique.
+While a stark change from the usual painting techniques at the time, for a modern viewer, pointillism seems almost familiar. This is indeed very close to the common CMYK printing technique, and almost feels like the result of some sort of [error diffusion algorithm](https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering).
+
+
+![By Maximilien Luce - Metropolitan Museum of Art, Public Domain, https://commons.wikimedia.org/w/index.php?curid=17870580](/sources/images/1340px-Morning,_Interior_-_Luce.jpeg)
+###### By Maximilien Luce - Metropolitan Museum of Art, Public Domain
+
+I personally really like pointillism, especially the landscape work of [George Seurat](https://en.wikipedia.org/wiki/Georges_Seurat), and it seems that we have all the technical tools to go that way in this project !
+
+#### Colors splitting
+
+Let's get back at our two issues with multicolor stippling.
+
+Our first issue was related to the generation of per-color grayscale bitmap for our Voronoi algorithm. As sais before, the issue is related to the color synthesis scheme, which is different between a computer and paper. On a computer, the basic color of a pixel is black, ie (0,0,0) (in a RGB representation). If you push all component of this pixel to the maximum, you get white (255,255,255).
+On paper on the other hand, you start from the white, and each spray of ink takes away some component of that white. The slightly unintuitive consequence is that for example, the red ink does not impact your red channel. It takes away some of the blue and green channel until you are only left with red.
+
+Knowing that, it was quite trivial to devise an algorithm to split a RGB image into an arbitrary number of bitmap, each corresponding to a specific ink color:
+* For each pixel, finds the ink in the ink set that could get us closer to the target value from the base value, ie white at the start (greedy method).
+* Apply 50% of the computed value for that ink.
+* Remove that ink from the ink set, set the base pixel value to reflect the application of the ink
+
+The reason for the 50% multiplier was that a "too greedy" algorithm was subject to a lot of thresholding, so leaving the chance for "less-close" color to contribute to each pixel was actually an advantage in term of final result.
+
+Regarding the moiré effect, the solution was to group all point from each independent color stipple process into a common set and relax that set for one or two cycle.
+
+#### Result and afterthoughts
+
+Using the method from the last paragraph, here is a video of a 4 color portrait of my sister.
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/Portrait.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://www.youtube.com/watch?v=s1ccgviUWxw
+</video>
+###### 4 colors portrait process
+
+As you can see, I set the plotter to be quite slow. The main reason was that while the compressor and the solenoid are both rated for continuous use, my experience is that they get uncomfortably hot after a bit of fast use. Since I am in no hurry, I felt it was smarter to set a very conservative pace and avoid a hangup in the middle of a multi-hours pass.
+
+While I am happy with the result, there is a few points that are not satisfactory yet.
+
+![](/sources/images/portrait.jpg)
+###### 4 colors portrait
+
+From afar, this looks very good. You get the king of movement and vibrance of pointillism artwork (hard to show in a picture). The issue is really that up close, the lack of well-defined color points and the mixing of color does look a bit.. blurry.
+
+This was to be expected, since airbrush is supposed to be used for smooth color transitions. So while this was fun, I think I'll try to focus more on a method to draw smooth and consistent gradient, and see where this goes !
+
+///
+[1/0/1]
+[1/3/4]
+---
+[1/0/1]
+
+///
+
+[9/9/9]
+##### 2021, created with [Flexdown](https://github.com/BenjaminPoilve/FlexDownEditor)
+##### @benjaminpoilve
