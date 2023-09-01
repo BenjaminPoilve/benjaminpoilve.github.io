@@ -29,9 +29,7 @@ So I wanted to design an instrument whose interface reflected this principle. So
 
 #### Design
 
-I wanted to design a handheld synthesiser, in which one hand select the current chord as a level on a pre-selected scale, and the other select a note in that chord. Based on the finding from the former article I chose the following level in scale :
-
-* I / ii / III / IV / V / vi / iii
+I wanted to design a handheld synthesiser, in which one hand select the current chord as a level on a pre-selected scale, and the other select a note in that chord. Based on the finding from the former article I chose the following level in scale I / ii / III / IV / V / vi / iii
 
 So this is an almost full major scale with a minor third (Caps mean major chord, no caps means minor). If you are wondering why, this is because those are the most used chords in pop music.
 
@@ -48,11 +46,7 @@ The idea being that you can use the full chord or any combination that you want.
 ![](/sources/images/synth-02.jpg)
 
 
-I decided to use capacitive pads for a few reasons:
-
-* Reliable
-* No moving part
-* Cheap
+I decided to use capacitive pads for a few reasons they are reliable, have no moving part and are very cheap to implement. 
 
 Unfortunately, the Teensy I choose did not have enough capacitive input, so I had to use a dedicated IC. I choose the cheap a solderable [QT2120](https://www.mouser.fr/ProductDetail/Microchip-Technology-Atmel/AT42QT2120-XUR?qs=sGAEpiMZZMsVh0scArXy39GoFU3Q6EzjtRsYSCRuHwE%3d). Easy enough to use, as Phillip Dupree had written I library that I completed to be able to use all the inputs.
 
