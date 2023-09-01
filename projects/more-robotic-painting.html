@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="https://benjaminpoilve.github.io/FlexDownEditor/template.css" media="all">
+<link rel="shortcut icon" type="image/png" href="/sources/ico.png"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Projects</title>
+<script src="https://benjaminpoilve.github.io/FlexDownEditor/flexdown.js"></script><noscript>
+///
+[0/0/9]
+## [:house:](/projects)
+
+[1/1/0]
+#### [**Home**](/)
+#### [__**Projects**__](/projects)
+#### [**Other**](/other)
+
+
+
+[3/4/9]
+###### Friday, September 01 2023
+## **More Robotic Painting**
+##### @benjaminpoilve
+
+I love plotters! If you’ve read other articles on this blog, you might already know that. The last incarnation of that passion was a giant hanging plotter with an airbrush for a head.
+
+While most of [my early exploration relied on “stippling” methods](https://www.benjaminpoilve.com/projects/robotic-pointillism.html), I was really interested to see whether I could use my device to produce smooth gradient-based images. 
+
+#### How to produce gradients? 
+
+Usually, airbrush artist rely on two methods two produce gradients:
+
+* They can increase the distance between the brush and the canvas, producing a lighter paint coat over a wider surface;
+* They can manually change the nozzle or air pressure between sprays;
+* For “dual action” type airbrush, they can modulate the quantity of paint in the air stream by “pulling back” the trigger”.
+
+Sadly none of those methods were inaccessible for me : my machine had a fixed distance from the canvas, did not have control of the air pressure and it used a single action airbrush ! 
+
+My strategy was the following: use a very diluted ink feed for the airbrush and generate a path where the airbrush would go multiple time over the zone that needs to be darker. I had thought about allowing the airbrush to dwell more over such zone unfortunately the diluted ink can quickly lead to an overspray phenomenon where the spray ink starts running. It was more consistent to allow the ink to dry before doing another pass.
+
+#### The control algorithm
+
+The algorithm I came up with was quite simple. Starting from a defined point in the image (ideally close to the center), the path would circle around it, expanding the circle by a value that is proportional to the underlying pixel value. Of course the implementation is a bit more complicated (you have to “integrate” the pixels to know how much you have to move towards the outside) but the idea stays the same. 
+
+As you can imagine, these kind of algorithm only work if you have a constant speed of the painting head. Plotter, and hanging plotter especially have a limited maximum acceleration which can cause issue in reaching the expected speed especially in situation where the path changes direction. To solve this issue, my algorithm plans for “approach path” whenever the acceleration does not allow to reach the expected speed.  
+
+Here is a little video of a single-channel test of that algorithm:
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/Portrait.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://www.youtube.com/watch?v=s1ccgviUWxw
+</video>
+
+And here is the result :
+
+![single channel démo](/sources/images/single_channel_demo.jpg])
+
+For the multi-coloured version, I simply used the colour-splitting techniques explained in [the last article(https://www.benjaminpoilve.com/projects/robotic-pointillism.html)
+
+#### Results and afterthoughts
+
+The results were definitely interesting. One that I did particularly like was a three colour painting of an isolated hand. While the colour mixing is off, it is quite characteristic of the feature of that technique: high “low frequency” accuracy of the image but very blurred. In fact pictures look quite strange because it looks like it is out of focus! 
+ 
+![hand](/sources/images/hand.jpg])
+
+The longest piece that I did was a 5-colours one. 
+
+I could probably have chosen a better source image that this banana and sparkling water bottle, but here I am (it had interesting gradients to troubleshoot the algorithm)! 
+
+Here is a video of the process: 
+
+And the final result:
+
+![final](/sources/images/final.jpg])
+
+Some detail:
+
+![detail](/sources/images/detail.jpg])
+
+
+#### What’s next?
+
+Unfortunately this is the end of my exploration of this way of painting. The two-meter tall machine was definitely taking too much space in my little appartement and other project were taking most of my time. 
+
+If I had to change how I did things, I would probably have spent time building hardware to control a double action airbrush, that would have made it much easier to control the painting and made it easier to produce actually interesting piece. I would probably also have favoured a “four-corner” type of plotter to maintain the painting head under tension and allow for faster movement. 
+
+///
+[1/0/1]
+[1/3/4]
+---
+[1/0/1]
+
+///
+
+[9/9/9]
+##### 2021, created with [Flexdown](https://github.com/BenjaminPoilve/FlexDownEditor)
+##### @benjaminpoilve
