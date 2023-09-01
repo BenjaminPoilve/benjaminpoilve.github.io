@@ -19,6 +19,92 @@
 ## **The Ondinette**
 ##### @benjaminpoilve
 
+For a while now I have been thinking about making a digital pedal steel. Indeed pedal steel, while an incredible instrument, suffers from drawback stemming from its mechanical complexity: heavy, cumbersome to maintain, hard to tune... This has led me to tinker in order to create the different parts necessary to build such an instrument. 
+
+One thing led to another, I ended up building a simple Martenot-inspired controller: the Ondinette ! 
+
+![ondinette](/sources/images/ondinette.jpg)
+
+#### Initial research
+
+While trying to build a digital pedal steel I've always stumbled on the “neck” interface. As with a slide guitar, you play pedal steel by sliding a metal bar across the strings. This allows to control precisely the pitch of the strings in a continuous matter. I’ve made attempts to [build a digital-compatible replica](https://www.benjaminpoilve.com/projects/steel-neck.html#), but I wasn’t really satisfied with the ease of use. 
+ 
+During my research I’ve come across the [Onde Martenot](https://en.wikipedia.org/wiki/Ondes_Martenot). If you are not familiar with this instrument, know that this is one of the first electronic music instruments (with the Theremin), invented in 1928. This instrument blends two control interfaces: a swivelling keyboard and a “ruban”. The similarity between the “ruban” control and the tonebar handling on pedal steel was immediately clear to me. After all, Maurice Martenot was a cellist and intended to allow the control that a fretless neck gives to such acoustic instruments. 
+
+I set up to build such a “ruban” interface, to know if this would be more satisfactory than my previous experiments. My initial test used a high-precision multiturn potentiometer and a good quality ADC to measure the “ruban" position. While it worked, the “drag” induced by the potentiometer was hindering the playability 
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/multi_channel.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+</video>
+
+At that time, I was also working on sensor that were using the Hall effect. This effect allows detect the orientation of the magnetic field, which makes the creation of a large range of non-contact sensor possible just by using magnets. By using two axis of sensing, some chip allow to detect the rotation of a diametrically magnetised magnet. A test with [a breakout board for the AS5600](https://wiki.seeedstudio.com/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/) showed that it was ideal: very good tracking and zero drag on the “ruban”.  
+
+This new “ruban” was reactive, expressive, and an all around good interface!
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/multi_channel.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+</video>
+
+#### The project
+
+At this stage:
+- I knew how I could easily build a reliable “ruban”;
+- I knew from my experiments that I could easily create a “touche d’expression” (controlling the intensity) with another Hall sensor;
+- I knew that the Teensy (my favourite microcontroller) supported MIDI out of the box and that MIDI  pitchbend signals would be enough to make it work. 
+
+Now I love tinkering, but following through and pushing a project to completion is my weak point. So I gave myself a goal: to make the simplest possible Onde Martenot controller.
+
+Ideally it would support MIDI (both USB and TRS), all fit on one PCB and use the least amount possible of costly additional parts. 
+
+#### First prototype
+
+I first had to validate the “touche” design and the general principle of the design. 
+
+For the touche, I did multiple experiments (with “keyboard-like” design, design that used magnets for the key return, and so on), but in the end the simplest and sturdiest design was to use a thin spring metal tab to support the “touche”. It is stable, resilient, and really simple to build and replace. To avoid any oscillation, some foam can be added in the cavity, resulting in a very cost effective design. 
+
+For the “ruban” I based my design on mass-produced door wheels with a 3D printed cap to support the magnet. 
+
+The “sensor zone” was in consequence simple and compact.
+
+![sensor zone](/sources/images/sensor_zone.jpg)
+
+I designed a test PCB to simply come on top of this “sensor zone”. It used a Teensy LC for the heavy lifting, and as expected, it was dead simple to make it output MIDI. 
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/multi_channel.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+</video>
+
+With everything working as expected, I set up to build the final version. 
+ 
+
+#### Final prototype and enclosure
+
+For the physical design, I wished to use the PCB FR4 panel as the front panel and have a wooden enclosure. I used the bottom silkscreen of the PCB to document the position of the sensors. 
+
+![PCB ondinette](/sources/images/pcb_ondinette.jpg)
+
+Once that was done, I tried out the assembly on a mock 3D printed version, then prepared all the fittings and hardware with a plan for the realisation of the enclosure. 
+
+![Plan ondinette](/sources/images/plan_ondinette.jpg)
+
+I had my friend Julien Roussel build two prototype enclosure according to the plan, and a few weeks later we did the assembly together! I’m always impressed by the quality of his craftsmanship, and this was no exception. He also gave me valuable feedback on the design, should it be needed to be produced on a larger scale. 
+
+![Proto ondinette](/sources/images/ondinette_proto.jpg)
+
+I also took the opportunity of this project to learn CNC machining and resin casting to make all the plastic hardware (potentiometer caps, the touche itself, the back cover, etc.). It was a significant learning curve and something I hope to evoke in depth in another post. 
+
+![Proto ondinette](/sources/images/molding.jpg)
+
+Finally, I made an alternative faceplate base on STM32 that directly outputs analog signals in order to be Eurorack compatible. It was my first time using a PCBA service and it was very interesting (and surprisingly easy). 
+
+#### Thoughts and next steps 
+
+Here is a short demo video of the finished project:
+
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/multi_channel.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://www.youtube.com/watch?v=AcF3TZwILvE</video>
+
+Please note that I am a bad Onde Martenot player. One of the main reason is that the Onde Martenot control is reversed with regards to the pedal steel: the pitch is on the right hand and not the left. So my pitch control is all out of funk.
+
+The remaining question is: what to do of the project? I am not sure which feature would be important to potential users, nor what kind of usage they would have of it. I feel like a low cost mechanical&electronics kit could be an option (with the enclosure left to the user), but maybe I am wrong and most would prefer a readily playable instrument. 
+
+I would love to get feedback on it! My email is easy enough to find, but if you wish to give your view, [here is a short survey](https://framaforms.org/feedback-on-the-ondinette-prototype-1690041947) that shouldn’t take more than a couple of minute to fill, and covers most of the point I need feedback on.
 
 ///
 [1/0/1]
