@@ -33,14 +33,14 @@ During my research I’ve come across the [Onde Martenot](https://en.wikipedia.o
 
 I set up to build such a “ruban” interface, to know if this would be more satisfactory than my previous experiments. My initial test used a high-precision multiturn potentiometer and a good quality ADC to measure the “ruban" position. While it worked, the “drag” induced by the potentiometer was hindering the playability 
 
-<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/multi_channel.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/first_test.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtu.be/Y1DdigzwPXc
 </video>
 
-At that time, I was also working on sensor that were using the Hall effect. This effect allows detect the orientation of the magnetic field, which makes the creation of a large range of non-contact sensor possible just by using magnets. By using two axis of sensing, some chip allow to detect the rotation of a diametrically magnetised magnet. A test with [a breakout board for the AS5600](https://wiki.seeedstudio.com/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/) showed that it was ideal: very good tracking and zero drag on the “ruban”.  
+At that time, I was also working on sensor that were using the Hall effect. This effect allows to detect the orientation of the magnetic field, which makes the creation of a large range of non-contact sensor possible just by using magnets. By using two axis of sensing, some chip allow to detect the rotation of a diametrically magnetised magnet. A test with [a breakout board for the AS5600](https://wiki.seeedstudio.com/Grove-12-bit-Magnetic-Rotary-Position-Sensor-AS5600/) showed that it was ideal: very good tracking and zero drag on the “ruban”.  
 
 This new “ruban” was reactive, expressive, and an all around good interface!
 
-<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/sensor_test.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/sensor_test.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtu.be/dTWQeFFCqKw
 </video>
 
 #### The project
@@ -64,11 +64,9 @@ For the “ruban” I based my design on mass-produced door wheels with a 3D pri
 
 The “sensor zone” was in consequence simple and compact.
 
-![sensor zone](/sources/images/sensor_zone.jpg)
-
 I designed a test PCB to simply come on top of this “sensor zone”. It used a Teensy LC for the heavy lifting, and as expected, it was dead simple to make it output MIDI. 
 
-<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/midi_test.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/xo4xcWgIitM
+<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/midi_test.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://youtube.com/shorts/IO1cxcIVMtk
 </video>
 
 With everything working as expected, I set up to build the final version. 
@@ -76,7 +74,7 @@ With everything working as expected, I set up to build the final version.
 
 #### Final prototype and enclosure
 
-For the physical design, I wished to use the PCB FR4 panel as the front panel and have a wooden enclosure. I used the bottom silkscreen of the PCB to document the position of the sensors. 
+For the physical design, I wished to use the PCB FR4 panel as the front panel and have a wooden enclosure. I used the bottom silkscreen of the PCB to document the position of the sensors and help the alignement during assembly. 
 
 ![PCB ondinette](/sources/images/pcb_ondinette.jpg)
 
@@ -98,7 +96,7 @@ Finally, I made an alternative faceplate base on STM32 that directly outputs ana
 
 Here is a short demo video of the finished project (also [available on Youtube](https://www.youtube.com/watch?v=AcF3TZwILvE)):
 
-<video controls max-width="250" style="width: 50%;" ><source src="../sources/videos/demo_ondinette.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://www.youtube.com/watch?v=AcF3TZwILvE</video>
+<video controls max-width="250" style="width: 75%;" ><source src="../sources/videos/demo_ondinette.webm"type="video/webm">Sorry, your browser doesn't support embedded videos, go there: https://www.youtube.com/watch?v=AcF3TZwILvE</video>
 
 Please note that I am a bad Onde Martenot player. One of the main reason is that the Onde Martenot control is reversed with regards to the pedal steel: the pitch is on the right hand and not the left. So my pitch control is all out of funk.
 
